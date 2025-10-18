@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test 4</title>
+    <style>
+        body { font-family: sans-serif; }
+        #infoBox {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #333;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Event Object ('e') Test</h1>
+    <button id="infoBtn">আমার উপর ক্লিক করে তথ্য দেখো</button>
+
+    <div id="infoBox">
+        এখানে তথ্য দেখানো হবে...
+    </div>
+
+    <script>
+        const infoButton = document.getElementById("infoBtn");
+        const infoBox = document.getElementById("infoBox");
+
+        // ফাংশনের প্যারামিটার হিসেবে 'e' বা 'event' লেখা হয়েছে
+        infoButton.addEventListener("click", function(e) {
+            // এখন আমরা 'e' অবজেক্টটি কনসোলে দেখব
+            console.log(e);
+
+            // 'e' থেকে কিছু তথ্য বের করে পেজে দেখাব
+            infoBox.innerHTML = `
+                <b>ইভেন্টের ধরন:</b> ${e.type}   
+
+                <b>টার্গেট এলিমেন্ট:</b> ${e.target.tagName}   
+
+                <b>টার্গেটের আইডি:</b> ${e.target.id}   
+
+                <b>টার্গেটের ভেতরের লেখা:</b> ${e.target.innerText}
+            `;
+        });
+    </script>
+
+</body>
+</html>

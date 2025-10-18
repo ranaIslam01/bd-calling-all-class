@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test 6 - preventDefault</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        input { padding: 8px; margin-bottom: 10px; width: 250px; }
+        button { padding: 8px 15px; }
+        #message { margin-top: 20px; font-weight: bold; color: green; }
+    </style>
+</head>
+<body>
+
+    <h1>Form Submission Test</h1>
+    <!-- 1st form  -->
+    <form id="withOutPreventDefault">
+      <h1> First form</h1>
+      <input type="text" placeholder="কিছু একটা লিখুন " required>
+      <button type="submit">  ক্লিক করলে পেজ রিলোড হবে </button>
+    </form>
+    <!-- 2nd form  -->
+     <form id="withPreventDafault">
+      <h1>Second form</h1>
+     <input id="myInput" type="text" placeholder="কিছু একটা লিখুন ">
+     <button type="submit">ক্লিক করলে পেজ রিলোড হবে নাহ</button>
+     </form>
+     <h1 id="massage"></h1>
+
+
+    <script>
+
+      const withPreventDafault = document.getElementById('withPreventDafault');
+      const myInput = document.getElementById('myInput');
+      const massage = document.getElementById('massage');
+
+
+        withPreventDafault.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const inputValue = myInput.value;
+          console.log(inputValue);
+          massage.innerText = `You are submit: ${inputValue}`;
+          
+        })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test 2</title>
+</head>
+<body>
+
+    <h1>DOM Property Method Test</h1>
+    <button id="myBtn">Multiple button work</button>
+
+    <script>
+      const myButton = document.getElementById('myBtn');
+      myButton.addEventListener('click', () => {
+        console.log("1st Function is work");
+        alert("1st Function is work");
+      })
+      myButton.addEventListener('click', () => {
+        console.log(" 2nd Function is work");
+        alert("2st Function is work")
+      })
+      myButton.addEventListener('click', () => {
+        alert("3st Function is work")
+        console.log("3nd Funtion is work");
+        document.body.style.backgroundColor = 'red';
+      })
+      
+    </script>
+
+</body>
+</html>

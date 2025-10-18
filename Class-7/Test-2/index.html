@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test 2</title>
+</head>
+<body>
+
+    <h1>DOM Property Method Test</h1>
+    <button id="myBtn">এখানে ক্লিক করুন</button>
+
+    <script>
+        // প্রথমে বাটনটিকে তার ID দিয়ে সিলেক্ট করা হলো
+        const myButton = document.getElementById("myBtn");
+
+        // এখন বাটনটির onclick প্রোপার্টিতে একটি ফাংশন দেওয়া হলো
+        myButton.onclick = function() {
+            console.log("প্রথম ফাংশনটি কাজ করছে!");
+            alert("DOM Property Method সফল!");
+        };
+
+        // 🧠 সীমাবদ্ধতা পরীক্ষা: একই বাটনে আবার onclick দেওয়া হলো
+        myButton.onclick = function() {
+            console.log("দ্বিতীয় ফাংশনটি কাজ করছে! প্রথমটি মুছে গেছে।");
+            alert("শুধুমাত্র দ্বিতীয় ফাংশনটি কাজ করছে!");
+        };
+    </script>
+
+</body>
+</html>

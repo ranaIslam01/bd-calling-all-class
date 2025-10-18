@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery Exam</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        #main-display {
+            margin-top: 20px;
+            border: 5px solid #ccc;
+            width: 500px;
+            height: 350px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            object-fit: cover;
+        }
+        #thumbnail-container {
+            margin-top: 20px;
+            border: 2px dashed #aaa;
+            padding: 10px;
+        }
+        .thumbnail {
+            width: 100px;
+            height: 70px;
+            margin: 5px;
+            cursor: pointer;
+            border: 2px solid #fff;
+            transition: border-color 0.3s;
+            object-fit: cover;
+        }
+        .thumbnail:hover {
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Image Gallery</h1>
+
+    <img id="main-display" src="Images/about.png" alt="Main Display">
+
+    <div id="thumbnail-container">
+        <img class="thumbnail" src="Images/banner3.jpg" alt="Image 1">
+        <img class="thumbnail" src="Images/blog1.jpg" alt="Image 2">
+        <img class="thumbnail" src="Images/choose.png" alt="Image 3">
+        <img class="thumbnail" src="Images/contact.jpg" alt="Image 4">
+    </div>
+
+    <script>
+      const mainDisplay = document.getElementById('main-display');
+      const thumbnailContainer = document.getElementById('thumbnail-container');
+
+      thumbnailContainer.addEventListener('click', (e) => {
+        if(e.target.classList.contains('thumbnail')){
+            mainDisplay.src = e.target.src;
+        }
+      })
+    </script>
+
+</body>
+</html>

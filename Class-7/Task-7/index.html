@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Image Gallery</title>
+    <style>
+        /* আগের CSS কোড একই থাকবে */
+        body { font-family: sans-serif; text-align: center; background-color: #f4f4f4; }
+        #main-display { margin-top: 20px; border: 5px solid #ccc; width: 500px; height: 350px; display: block; margin-left: auto; margin-right: auto; object-fit: cover; }
+        #thumbnail-container { margin-top: 20px; border: 2px dashed #aaa; padding: 10px; }
+        .thumbnail { width: 100px; height: 70px; margin: 5px; cursor: pointer; border: 3px solid #fff; transition: border-color 0.3s; object-fit: cover; }
+        .thumbnail:hover { border-color: #aaa; }
+        
+        /* নতুন CSS ক্লাস: অ্যাক্টিভ থাম্বনেইল দেখানোর জন্য */
+        .active-thumbnail {
+            border-color: #007bff; /* নীল রঙের বর্ডার */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Advanced Image Gallery</h1>
+    <img id="main-display" src="Images/about.png" alt="Main Display">
+    <div id="thumbnail-container">
+        <img class="thumbnail" src="Images/banner3.jpg" alt="Image 1">
+        <img class="thumbnail" src="Images/blog1.jpg" alt="Image 2">
+        <img class="thumbnail" src="Images/choose.png" alt="Image 3">
+        <img class="thumbnail" src="Images/3.webp" alt="Image 4">
+        <img class="thumbnail" src="Images/4.jpg" alt="Image 4">
+        <img class="thumbnail" src="Images/6.jpg" alt="Image 4">
+        <img class="thumbnail" src="Images/contact.jpg" alt="Image 4">
+    </div>
+
+    <script>
+        // ধাপ ১: প্রয়োজনীয় এলিমেন্টগুলো সিলেক্ট করুন
+        const mainDisplay = document.getElementById('main-display');
+        const thumbnailContainer = document.getElementById('thumbnail-container');
+        // সব থাম্বনেইলকে একটি লিস্ট হিসেবে সিলেক্ট করুন
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        let currentIndex = 0; // বর্তমান ছবির অবস্থান ট্র্যাক করার জন্য
+
+        // একটি ফাংশন যা ছবি ও থাম্বনেইল আপডেট করবে
+        function updateImageAndThumbnail(index) {
+            // ধাপ ২: বড় ছবির src পরিবর্তন করুন
+            mainDisplay.src = thumbnails[index].src;
+            
+            // ধাপ ৩: সব থাম্বনেইল থেকে 'active-thumbnail' ক্লাস মুছে ফেলুন
+            thumbnails.forEach(thumb => {
+                thumb.classList.remove('active-thumbnail');
+            });
+            
+            // ধাপ ৪: শুধুমাত্র বর্তমান থাম্বনেইলে 'active-thumbnail' ক্লাস যোগ করুন
+            thumbnails[index].classList.add('active-thumbnail');
+
+            // বর্তমান ইনডেক্স আপডেট করুন
+            currentIndex = index;
+        }
+
+        // ধাপ ৫: থাম্বনেইল কন্টেইনারে ক্লিক ইভেন্ট যুক্ত করুন
+        thumbnailContainer.addEventListener('click', function(e) {
+            if (e.target.classList.contains('thumbnail')) {
+                // ক্লিক করা থাম্বনেইলটির ইনডেক্স খুঁজে বের করুন
+                const clickedIndex = Array.from(thumbnails).indexOf(e.target);
+                updateImageAndThumbnail(clickedIndex);
+            }
+        });
+
+        // --- আপনার কাজ শুরু এখান থেকে ---
+
+        // ধাপ ৬: কীবোর্ড ইভেন্ট লিসেনার যুক্ত করুন
+        document.addEventListener('keydown', function(e) {
+            // আপনার কোড এখানে লিখুন
+            // Hint: e.key দিয়ে কোন কী চাপা হয়েছে তা জানতে পারবেন ('ArrowRight' বা 'ArrowLeft')
+
+            // যদি ডান অ্যারো কী চাপা হয়...
+            if (e.key === 'ArrowRight') {
+                // ইনডেক্স এক বাড়ান। যদি শেষ ছবিতে থাকে, তাহলে প্রথম ছবিতে ফিরে যান।
+                // আপনার কোড...
+            }
+
+            // যদি বাম অ্যারো কী চাপা হয়...
+            if (e.key === 'ArrowLeft') {
+                // ইনডেক্স এক কমান। যদি প্রথম ছবিতে থাকে, তাহলে শেষ ছবিতে যান।
+                // আপনার কোড...
+            }
+        });
+
+        // পেজ লোড হওয়ার সাথে সাথে প্রথম ছবিটি অ্যাক্টিভ করুন
+        updateImageAndThumbnail(0);
+
+    </script>
+</body>
+</html>
