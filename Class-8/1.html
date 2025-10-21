@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sync vs. Async Test</title>
+    <style>
+        /* বেসিক স্টাইলিং */
+        body {
+            font-family: sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            color: #1a73e8;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #155ab6;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f0fe;
+            border: 1px solid #d2e3fc;
+            border-radius: 5px;
+            text-align: left;
+            min-height: 100px;
+            white-space: pre-wrap; /* এটি লাইন ব্রেক ঠিকভাবে দেখাবে */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>সিঙ্ক্রোনাস বনাম অ্যাসিঙ্ক্রোনাস</h1>
+        
+        <!-- এই বাটন দুটি সিঙ্ক্রোনাস এবং অ্যাসিঙ্ক্রোনাস ফাংশন কল করবে -->
+        <button onclick="synchronousTask()">সিঙ্ক্রোনাস টাস্ক</button>
+        <button onclick="asynchronousTask()">অ্যাসিঙ্ক্রোনাস টাস্ক</button>
+        
+        <!-- এখানে আমরা ফলাফল দেখাব -->
+        <div id="output">
+            এখানে ফলাফল দেখানো হবে...
+        </div>
+    </div>
+
+    <script>
+        const outputDiv = document.getElementById('output');
+
+        // Helper function to print messages to the div
+        function printMessage(message) {
+            outputDiv.innerHTML += message + '\n';
+        }
+
+        // --- ১. সিঙ্ক্রোনাস টাস্ক ---
+        function synchronousTask() {
+            outputDiv.innerHTML = ''; // আউটপুট ক্লিয়ার করি
+            printMessage("সিঙ্ক্রোনাস টাস্ক শুরু...");
+
+            // একটি দীর্ঘ সময় ধরে চলা কাজ (Blocking)
+            // এটি ৫ সেকেন্ডের জন্য ব্রাউজারকে থামিয়ে দেবে
+            printMessage("একটি দীর্ঘ কাজ শুরু হচ্ছে (UI এখন ফ্রিজ হয়ে যাবে)...");
+            const startTime = new Date().getTime();
+            while (new Date().getTime() - startTime < 5000) {
+                // এই লুপটি ৫ সেকেন্ড ধরে চলবে এবং কিছুই করবে না
+                // কিন্তু এটি মূল থ্রেডকে ব্লক করে রাখবে
+            }
+            printMessage("...দীর্ঘ কাজটি শেষ হলো।");
+
+            printMessage("সিঙ্ক্রোনাস টাস্ক শেষ।");
+        }
+
+        // --- ২. অ্যাসিঙ্ক্রোনাস টাস্ক ---
+        function asynchronousTask() {
+            outputDiv.innerHTML = ''; // আউটপুট ক্লিয়ার করি
+            printMessage("অ্যাসিঙ্ক্রোনাস টাস্ক শুরু...");
+
+            // একটি দীর্ঘ সময় ধরে চলা কাজ (Non-Blocking)
+            // setTimeout ব্রাউজারকে বলে এই কাজটি ব্যাকগ্রাউন্ডে করতে
+            printMessage("একটি দীর্ঘ কাজ শুরু হচ্ছে (UI এখন সচল থাকবে)...");
+            setTimeout(() => {
+                printMessage("...দীর্ঘ কাজটি শেষ হলো।");
+            }, 3000); // ৩ সেকেন্ড পর এটি রান হবে
+
+            printMessage("অ্যাসিঙ্ক্রোনাস টাস্ক শেষ। (কিন্তু দীর্ঘ কাজটি ব্যাকগ্রাউন্ডে চলছে)");
+        }
+    </script>
+
+</body>
+</html>
