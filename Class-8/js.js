@@ -30,27 +30,27 @@
 
               // Example 2 Asynchronous + Promise
 
-function fatchData () {
-  console.log("Server is running")
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-    const handle = true;
-    const data = [
-      {id:1, name: "Rana Islam"},
-      {id:2, name: "Rakib Islam"},
-    ]
-    if(handle === true){
-      resolve(data);
-    }else{
-      reject("Error massage")
-    }
-    },2000)
-  })
-}
-fatchData()
- .then((userData) => {
-  console.log(userData);
- })
- .catch((error) => {
-  console.log(error);
- })
+// function fatchData () {
+//   console.log("Server is running")
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//     const handle = true;
+//     const data = [
+//       {id:1, name: "Rana Islam"},
+//       {id:2, name: "Rakib Islam"},
+//     ]
+//     if(handle === true){
+//       resolve(data);
+//     }else{
+//       reject("Error massage")
+//     }
+//     },2000)
+//   })
+// }
+// fatchData()
+//  .then((userData) => {
+//   console.log(userData);
+//  })
+//  .catch((error) => {
+//   console.log(error);
+//  })
